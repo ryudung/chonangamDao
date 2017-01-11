@@ -1,22 +1,21 @@
+import dao.NUserDao;
 import dao.UserDao;
+import dao.ZUserDao;
 import domain.User;
 
 import java.sql.SQLException;
-import java.util.UUID;
 
 
 public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao dao = new UserDao();
+        UserDao dao = new ZUserDao();//객체를 생성을 결정하는 것이 클라이언트 쪽으로 넘어옴
+
         User user = dao.get("ryudung");
         System.out.println(user.toString());
 
+        UserDao dao2 = new NUserDao();//객체를 생성을 결정하는 것이 클라이언트 쪽으로 넘어옴
 
-        User user2 = new User(UUID.randomUUID().toString().substring(0,5),"테스트","1");
-        dao.insert(user2);
-
-
-        dao.get(user2.getId());
+        User user2 = dao2.get("ryudung");
         System.out.println(user2.toString());
 
     }
