@@ -10,9 +10,9 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-/*        ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
-        UserDao userDao = context.getBean("UserDao", UserDao.class);*/
-        UserDao userDao = new DaoFactory().UserDao();
+        ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
+        UserDao userDao = context.getBean("UserDao", UserDao.class);
+       /* UserDao userDao = new DaoFactory().UserDao();*/
         User user = userDao.get("ryudung");
         System.out.println(user.toString());
     }
