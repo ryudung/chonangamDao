@@ -1,6 +1,8 @@
 package dao;
 
+import connection.ConnectionMaker;
 import connection.SimpleConnectionMaker;
+import connection.ZConnectionMaker;
 import domain.User;
 
 import java.sql.*;
@@ -14,20 +16,22 @@ import java.sql.*;
  * 2. 파라미터 바인딩과 어떤 SQL을 사용
  * 3. connection을 닫아주는 작업
  * <p>
- * 진행할 작업 : 상속을 통한 확장.
+ * 진행할 작업 : 인터페이스의 도입
  */
-public abstract class UserDao {
-
+public class UserDao {
 
     /*
     변경한 코드
     * */
-    private SimpleConnectionMaker simpleConnectionMaker;
+    private ConnectionMaker ConnectionMaker;
 
+    public UserDao() {
+        ConnectionMaker = new ZConnectionMaker();// 생성자에 어떤 ConnectionMaker를 사용할지 지정해 줘야 한다.
+    }
 
     public void insert(User user) throws ClassNotFoundException, SQLException {
 
-        Connection con = simpleConnectionMaker.makeNewConnection();
+        Connection con = ConnectionMaker.makeConnection();
 
         PreparedStatement ps = con.prepareStatement("insert into users(id, name, password) values(?,?,?)");
         ps.setString(1, user.getId());
@@ -42,7 +46,7 @@ public abstract class UserDao {
 
     public User get(String id) throws ClassNotFoundException, SQLException {
 
-        Connection con = simpleConnectionMaker.makeNewConnection();
+        Connection con = ConnectionMaker.makeConnection();
 
         PreparedStatement ps = con.prepareStatement("select * from users where id=?");
         ps.setString(1, id);

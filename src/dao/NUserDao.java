@@ -10,7 +10,7 @@ import java.sql.SQLException;
  * *
  **/
 public class NUserDao extends UserDao {
-    @Override
+
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver"); //N사의 DB 예) oradle, mysql, maria..
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test_ex?useSSL=false&characterEncoding=UTF-8", "ryudung","1234");
