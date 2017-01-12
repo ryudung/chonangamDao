@@ -16,7 +16,7 @@ import java.sql.*;
  * 2. 파라미터 바인딩과 어떤 SQL을 사용
  * 3. connection을 닫아주는 작업
  * <p>
- * 진행할 작업 : 인터페이스의 도입
+ * 진행할 작업 : 관계설정 책임의 분리
  */
 public class UserDao {
 
@@ -25,8 +25,8 @@ public class UserDao {
     * */
     private ConnectionMaker ConnectionMaker;
 
-    public UserDao() {
-        ConnectionMaker = new ZConnectionMaker();// 생성자에 어떤 ConnectionMaker를 사용할지 지정해 줘야 한다.
+    public UserDao(ConnectionMaker ConnectionMaker) {
+        this.ConnectionMaker = ConnectionMaker;
     }
 
     public void insert(User user) throws ClassNotFoundException, SQLException {

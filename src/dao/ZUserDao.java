@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * * Created by ryudung on 2017-01-11.
  * *
  **/
-public class ZUserDao extends UserDao{
+public class ZUserDao {
 
 
     public Connection getConnection() throws ClassNotFoundException, SQLException {

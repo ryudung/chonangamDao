@@ -1,3 +1,5 @@
+import connection.ConnectionMaker;
+import connection.ZConnectionMaker;
 import dao.NUserDao;
 import dao.UserDao;
 import dao.ZUserDao;
@@ -8,7 +10,9 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao dao = new UserDao();
+        ConnectionMaker con = new ZConnectionMaker();//클라이언트로 connectionMaker 생성 책임을 넘겼다.
+
+        UserDao dao = new UserDao(con);
 
         User user = dao.get("ryudung");
         System.out.println(user.toString());

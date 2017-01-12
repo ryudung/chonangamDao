@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * * Created by ryudung on 2017-01-11.
  * *
  **/
-public class NUserDao extends UserDao {
+public class NUserDao {
 
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver"); //N사의 DB 예) oradle, mysql, maria..
