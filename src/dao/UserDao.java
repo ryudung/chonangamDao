@@ -16,7 +16,7 @@ import java.sql.*;
  * 2. 파라미터 바인딩과 어떤 SQL을 사용
  * 3. connection을 닫아주는 작업
  * <p>
- * 진행할 작업 : 관계설정 책임의 분리
+ * 진행할 작업 : 오브젝트 팩토리(제어의역전)
  */
 public class UserDao {
 
