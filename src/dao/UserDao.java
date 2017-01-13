@@ -17,6 +17,10 @@ import java.sql.*;
  * 3. connection을 닫아주는 작업
  * <p>
  * 진행할 작업 : 스프링 Ioc (제어의역전)
+ *
+ * 주의: 계속해서 변하는 데이터는 읽기 전용 데이터가 아니면, 인스턴스 필드로 선언하면 안된다
+ *      단, 에플리케이션컨텍스트에서 주입 받는 객체는 괜찮다.
+ *      - 변화하는 데이터를 공유하게 되면, 심각한 문제를 발생시킬 수 있다.
  */
 public class UserDao {
 
@@ -24,6 +28,12 @@ public class UserDao {
     변경한 코드
     * */
     private ConnectionMaker ConnectionMaker;
+    private int a;
+
+    public int change(int b){
+        a= a+b;
+        return a;
+    }
 
     public UserDao(ConnectionMaker ConnectionMaker) {
         this.ConnectionMaker = ConnectionMaker;

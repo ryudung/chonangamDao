@@ -12,8 +12,12 @@ public class Main {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
         UserDao userDao = context.getBean("UserDao", UserDao.class);
+        System.out.println(userDao.change(1));
        /* UserDao userDao = new DaoFactory().UserDao();*/
         User user = userDao.get("ryudung");
         System.out.println(user.toString());
+
+        UserDao userDao2 = context.getBean("UserDao", UserDao.class);
+        System.out.println(userDao.change(1));
     }
 }

@@ -20,15 +20,11 @@ import org.springframework.context.annotation.Configuration;
 public class DaoFactory { //이 역할을 스프링이 해주게 된다.
     @Bean
     public UserDao UserDao() {
-
-        UserDao userDao = new UserDao(connectionMaker());
-        return userDao;
+        return new UserDao(connectionMaker());
     }
     @Bean
     public UserDao NUserDao() {
-
-        UserDao userDao = new UserDao(connectionMaker());
-        return userDao;
+        return new UserDao(connectionMaker());
     }
     @Bean
     public ConnectionMaker connectionMaker(){
